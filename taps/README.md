@@ -4,7 +4,7 @@ A tap is one small file you copy into your own app. After every Jev call your ap
 
 Your app still calls TypeSafe directly, the same as before. If Tarnlight is closed, missing or broken, your calls are not slowed down or stopped.
 
-First, once: run `tarnlight install`. It makes the folder. A tap writes nothing until the folder exists.
+First, once: open Tarnlight (or run `tarnlight install`). Either makes the folder. A tap writes nothing until the folder exists.
 
 ## Python (typesafe-sdk)
 

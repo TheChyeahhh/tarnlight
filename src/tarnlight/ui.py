@@ -796,7 +796,7 @@ class ConsoleWindow(QMainWindow):
                  f"{self.feed_missed:,} not in the feed (paused longer than the live buffer holds)" if self.feed_missed else "",
                  f"{self.ingest.counts['rejected']:,} refused (see the rejects file)" if self.ingest.counts["rejected"] else "",
                  f"{self.proxy.counts['not recorded']:,} Jev calls forwarded but not recorded" if self.proxy and self.proxy.counts["not recorded"] else "",
-                 "" if self.inbox is None else "drop box off (tarnlight install)" if not self.inbox.folder.is_dir()
+                 "" if self.inbox is None else "drop box off: reopen Tarnlight to turn it on" if not self.inbox.folder.is_dir()
                  else "catching up from the drop box" if self.inbox.counts["waiting bytes"] else ""]
         set_text(self.s_packet, " · ".join([f"last packet {age:.1f} s ago" if age is not None else "no packets yet"] + [n for n in notes if n]),
                  PACKET_WIDTH)  # the notes can be long: shortened, the full line in a tooltip

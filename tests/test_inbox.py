@@ -241,3 +241,16 @@ def test_a_file_that_cannot_be_looked_at_once_keeps_its_place(world, monkeypatch
     box.poll(NOW)  # the file is there but cannot be looked at
     monkeypatch.undo()
     assert box.poll(NOW) == 0 and len(stored(log, ing, 2)) == 2  # not read again from the start
+
+
+def test_starting_turns_the_drop_box_on(world, tmp_path):
+    folder, log, ing = world
+    missing = tmp_path / "home" / ".tarnlight" / "inbox"
+    box = Inbox(ing, missing).start()
+    try:
+        assert missing.is_dir()  # no install step: opening the console is enough
+    finally:
+        box.stop()
+    blocked = tmp_path / "a-file"; blocked.write_text("x", encoding="utf-8")
+    box = Inbox(ing, blocked / "inbox").start()  # a folder that cannot be made: the console still starts
+    box.stop()

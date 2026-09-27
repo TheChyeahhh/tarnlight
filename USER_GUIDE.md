@@ -303,7 +303,7 @@ From left to right:
 
 - **The numbers after the lights.** 7337 and 7338 are ports. A port is a numbered door that programs on one computer use to talk to each other. The demo uses a random one.
 - **Notes** that appear after "last packet" only when they apply:
-  - "drop box off (tarnlight install)": the drop box folder does not exist, so taps write nothing. To make it, run `.\tarnlight-cli.exe install` in the Tarnlight folder.
+  - "drop box off: reopen Tarnlight to turn it on": the drop box folder is missing, so taps write nothing. Tarnlight makes it every time it opens.
   - "catching up from the drop box": Tarnlight is reading in calls made while it was closed.
   - "N refused (see the rejects file)": records that were broken or in the wrong format. Tarnlight keeps the reason, the size and a fingerprint (never the content) in a rejects file next to the session file.
   - "N Jev calls forwarded but not recorded": the proxy passed calls on to TypeSafe but was too busy to record them.
@@ -378,7 +378,7 @@ This is the payoff of grading: finding out whether a confidence number is honest
 
 ### Watch an app's Jev calls
 
-1. Once, make the drop box: in the Tarnlight folder, run `.\tarnlight-cli.exe install`.
+1. Open Tarnlight once. It turns the drop box on by itself, with nothing to type.
 2. Add a tap to your app. The [README](README.md#the-drop-box-recommended) shows the Python lines, and [taps/README.md](taps/README.md) has JavaScript too.
 3. Open Tarnlight and run your app. A chip with its name appears in the toolbar, and its questions appear as chips on the chart.
 
@@ -473,7 +473,7 @@ Tarnlight is free, and watching your calls adds no cost. It never calls TypeSafe
 In the `.tarnlight` folder in your user folder (for example `C:\Users\you\.tarnlight`). To open it, type `%USERPROFILE%\.tarnlight` into File Explorer's address bar. It holds `sessions` (one main `.jevlog` file per run, with every call and your grades, plus a few small helper files beside it), `inbox` (the drop box) and `bands.json` (your bands). Tarnlight uploads none of it: no account, no usage reports, no update check. The demo writes nothing there.
 
 **How do I remove it?**
-Delete the `.tarnlight` folder, which also turns the drop box off, and the unzipped `Tarnlight` folder. There is no installer. The only other file is a small log of the app's own messages in `%TEMP%\tarnlight`. To turn the drop box off but keep your sessions and bands, run `.\tarnlight-cli.exe uninstall` instead. Open Tarnlight once first, so it reads in any copies still waiting: `uninstall` deletes copies it has not read in yet, and tells you how many. Taps left in your apps simply stop writing.
+Delete the `.tarnlight` folder, which also turns the drop box off, and the unzipped `Tarnlight` folder. There is no installer. The only other file is a small log of the app's own messages in `%TEMP%\tarnlight`. To turn the drop box off but keep your sessions and bands, run `.\tarnlight-cli.exe uninstall` instead (it stays off until you open Tarnlight again). Open Tarnlight once first, so it reads in any copies still waiting: `uninstall` deletes copies it has not read in yet, and tells you how many. Taps left in your apps simply stop writing.
 
 **Does it work on a Mac?**
 Not yet. The download is for Windows, and only Windows is supported. Installing from source on a Mac might work, but it is not supported.

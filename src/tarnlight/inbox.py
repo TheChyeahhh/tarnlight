@@ -1,7 +1,8 @@
 """
 The drop box. Callers call TypeSafe directly and, after each call,
 append one canonical record per line to ~/.tarnlight/inbox/<source>-<YYYY-MM-DDTHH>.jsonl (the UTC hour). So a closed,
-crashed or missing console never touches a call. While the console is open, this thread imports the folder: first
+crashed or missing console never touches a call. The console makes the folder when it starts, so the drop box is on
+from the first time it is opened. While the console is open, this thread imports the folder: first
 everything that arrived while it was closed, then new lines as they come (it looks every POLL_S).
 
   * a read position per file, kept in inbox/.positions.json and keyed by name and file id, so a file removed and made
@@ -17,7 +18,7 @@ everything that arrived while it was closed, then new lines as they come (it loo
     current hour's file. Half a line at the end of such a file will never be finished: it goes to the rejects file.
     Nothing here writes to a file a caller writes to, and a file that cannot be read never stops the others
 """
-import codecs, collections, json, os, threading, time
+import codecs, collections, contextlib, json, os, threading, time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from . import ingest as ingest_module
@@ -53,6 +54,7 @@ class Inbox:
         self.thread = threading.Thread(target=self._run, name="tarnlight-inbox", daemon=True)
 
     def start(self):
+        with contextlib.suppress(OSError): self.folder.mkdir(parents=True, exist_ok=True)  # the drop box is on while the console runs
         self.thread.start(); return self
 
     def stop(self):

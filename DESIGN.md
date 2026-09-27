@@ -21,7 +21,7 @@ From a clone:
 ```
 pip install .
 tarnlight                              # the console: a new session log, the drop box, the UDP listener, the proxy, the window
-tarnlight install                      # make the drop box folder, ~/.tarnlight/inbox
+tarnlight install                      # make the drop box folder, ~/.tarnlight/inbox (the console also does)
 tarnlight uninstall                    # remove it; callers stop leaving copies
 tarnlight replay FILE.jsonl --speed 10 # send a file of records to a running console
 ```
@@ -36,7 +36,7 @@ There are three ways in. All of them end in the same checks and the same log.
 
 Callers call TypeSafe directly, as if Tarnlight did not exist. After each call, failed ones included, they append one record to a file in `~/.tarnlight/inbox`. The console imports the folder while it is open. So a closed, crashed or missing console can never fail or slow a call, and the API key never passes through Tarnlight.
 
-`tarnlight install` makes the folder and changes nothing else: no setting, no environment variable, no background program. `tarnlight uninstall` removes it and says how many files were not imported yet.
+The console makes the folder whenever it starts, so opening Tarnlight once turns the drop box on. `tarnlight install` makes it without opening the window. Neither changes anything else: no setting, no environment variable, no background program. `tarnlight uninstall` removes it and says how many files were not imported yet.
 
 Rules for a writer:
 

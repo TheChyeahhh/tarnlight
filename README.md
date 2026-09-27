@@ -59,13 +59,7 @@ There are two ways in. Use one of them per app, not both, or each call shows up 
 
 Once you add a tap (step 2), your app leaves a copy of each Jev call in a folder on your computer: the drop box. Tarnlight reads that folder whenever it is open, including the calls made while it was closed. Your app never waits for Tarnlight, and your API key (the secret code your app uses to sign in to TypeSafe and pay for calls) never passes through it.
 
-1. Once, make the folder. Open the `Tarnlight` folder in File Explorer, click the address bar, type `powershell` and press Enter. Then run:
-
-   ```powershell
-   .\tarnlight-cli.exe install
-   ```
-
-   This makes `.tarnlight\inbox` in your user folder and changes nothing else on your computer.
+1. Open Tarnlight once. It turns the drop box on by itself: it makes the folder `.tarnlight\inbox` in your user folder, which stays from then on. Nothing else on your computer changes.
 
 2. Add a tap to your app. A tap is one small file from the [taps](taps/) folder that writes the copies for you. For an app written in Python that uses TypeSafe's Python SDK (the toolkit TypeSafe gives programmers for calling Jev), copy `taps/python/tarnlight_tap.py` next to the app's main Python file and wrap the client like this:
 
@@ -108,7 +102,7 @@ The setting lasts only in that PowerShell window. Keep Tarnlight open while the 
 - **It works offline.** No account, no sign-in, no usage reports, no update check.
 - **It never calls TypeSafe on its own.** The proxy only passes on calls your app makes. The one exception is the inspector's **replay this one** button, which sends one new call to TypeSafe. That call is paid, like any other.
 - **To remove it:** delete the `.tarnlight` folder (this also turns the drop box off) and the unzipped `Tarnlight` folder. There is no installer. The only other thing it writes is a small log of its own messages in `%TEMP%\tarnlight`.
-- **To turn the drop box off but keep your sessions and bands,** run `.\tarnlight-cli.exe uninstall` instead. Open Tarnlight once first, so it reads in any copies still waiting: `uninstall` deletes copies it has not read in yet, and tells you how many.
+- **To turn the drop box off but keep your sessions and bands,** run `.\tarnlight-cli.exe uninstall` instead. It stays off until you open Tarnlight again. Open Tarnlight once first, so it reads in any copies still waiting: `uninstall` deletes copies it has not read in yet, and tells you how many.
 
 ## Install from source
 
@@ -122,7 +116,7 @@ cd tarnlight
 pip install .
 tarnlight              # open the window
 tarnlight demo         # the demo, from the command line
-tarnlight install      # make the drop box
+tarnlight install      # make the drop box without opening the window
 ```
 
 `tarnlight uninstall` removes the drop box. `tarnlight replay FILE.jsonl` plays a saved JSONL file of calls (a text file with one record per line) into an open window. With the zip download, the same commands start with `.\tarnlight-cli.exe` instead of `tarnlight`.

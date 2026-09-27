@@ -36,7 +36,8 @@ def uninstall(inbox=INBOX, say=print):
     unread = sum(1 for f in inbox.glob("*.jsonl") if done.get(f"{f.name}:{f.stat().st_ino}", 0) != f.stat().st_size)
     shutil.rmtree(inbox)
     say(f"Drop box removed: {inbox}" + (f" (with {unread} file{'s' if unread != 1 else ''} the console had not imported yet)." if unread else "."))
-    say("Callers stop leaving copies at once. Nothing else was changed.")
+    say("Callers stop leaving copies at once, until Tarnlight is opened again: it turns the drop box back on. "
+        "Nothing else was changed.")
 
 
 def base_urls(settings=None):

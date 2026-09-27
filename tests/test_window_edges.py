@@ -360,7 +360,7 @@ def test_the_window_tells_about_the_drop_box(app, tmp_path):
     win, log = proxied_console(app, tmp_path / "w", inbox=box)
     try:
         win.refresh(force=True)
-        assert "drop box off (tarnlight install)" in win.s_packet.text() + win.s_packet.toolTip()
+        assert "drop box off: reopen Tarnlight to turn it on" in win.s_packet.text() + win.s_packet.toolTip()
         box.folder.mkdir(); box.counts["waiting bytes"] = 500; win.refresh(force=True)
         assert "catching up from the drop box" in win.s_packet.text() + win.s_packet.toolTip()
         box.counts.update({"waiting bytes": 0, "at start": 12}); win.refresh(force=True)
