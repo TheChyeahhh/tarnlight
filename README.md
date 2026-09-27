@@ -42,10 +42,11 @@ The view that draws confidence against your grades (a calibration chart) is not 
 ## Try it in one minute
 
 1. Download `Tarnlight-<version>-windows.zip` from the [Releases page](https://github.com/TheChyeahhh/tarnlight/releases).
-2. Right-click the zip and choose **Extract All**, then **Extract**. Open the folder that appears, then the `Tarnlight` folder inside it. Do not run the app from inside the zip: it needs the `_internal` folder next to it, and that only works once the zip is extracted.
-3. Double-click `Tarnlight.exe`. Windows may show a blue box that says **"Windows protected your PC"**, because the app is not signed yet. (Signing is a paid certificate that tells Windows who made a program.) Click **More info**, then **Run anyway**.
-4. The window opens on a nearly empty screen that says "Waiting for Jev decisions". Press the button on it, **Try the demo (made-up data)**. A second window opens and plays invented Jev traffic from three pretend apps.
-5. Then follow [Your first five minutes](USER_GUIDE.md#your-first-five-minutes) in the user guide. It walks you through the window one step at a time.
+2. **Unblock it first.** Right-click the zip, choose **Properties**, tick **Unblock** at the bottom of the General tab and click **OK**. Windows marks every download from the internet, and it can refuse to start an app that is not signed yet (signing is a paid certificate that tells Windows who made a program) with a message about an **unknown developer** or **unknown publisher**. Unblocking tells Windows you trust this download. If there is no Unblock box, the zip is already unblocked.
+3. Right-click the zip and choose **Extract All**, then **Extract**. Open the folder that appears, then the `Tarnlight` folder inside it. Do not run the app from inside the zip: it needs the `_internal` folder next to it, and that only works once the zip is extracted.
+4. Double-click `Tarnlight.exe`. If Windows still shows a blue box that says **"Windows protected your PC"**, click **More info**, then **Run anyway**. If it blocks the app with no way to run it, delete the extracted folder, unblock the zip (step 2) and extract it again.
+5. The window opens on a nearly empty screen that says "Waiting for Jev decisions". Press the button on it, **Try the demo (made-up data)**. A second window opens and plays invented Jev traffic from three pretend apps.
+6. Then follow [Your first five minutes](USER_GUIDE.md#your-first-five-minutes) in the user guide. It walks you through the window one step at a time.
 
 The demo sends nothing to TypeSafe and needs no account or key. When you close its window, everything it made is deleted.
 

@@ -32,7 +32,7 @@ The demo is the safest way to learn the window. It plays made-up Jev traffic, se
 
 **One rule for later, with real data: export before you close.** The window only shows the current session, so export your grades as a CSV file before you close Tarnlight (see [Grading](#grading)). In the demo nothing is kept anyway.
 
-**Open it.** Start `Tarnlight.exe`. The first screen is nearly empty: it says "Waiting for Jev decisions", then one faint line that starts "For programmers" (you can ignore it), then a button.
+**Open it.** Start `Tarnlight.exe`. (If Windows says the app is from an unknown developer and will not run it, see [Questions and answers](#questions-and-answers) at the end.) The first screen is nearly empty: it says "Waiting for Jev decisions", then one faint line that starts "For programmers" (you can ignore it), then a button.
 
 ![The start screen, before any calls have arrived](docs/images/start-screen.png)
 
@@ -480,6 +480,9 @@ Not yet. The download is for Windows, and only Windows is supported. Installing 
 
 **Can I open yesterday's session?**
 Not yet. Each start opens a new session. Old session files stay on disk, but the window only shows the session it started. Export what you need before closing. A programmer can play a JSONL export back into a new window with `.\tarnlight-cli.exe replay FILE.jsonl`, but that brings back the calls, not your grades. To keep your grades, export the CSV.
+
+**Windows says "unknown developer" and will not run it.**
+Tarnlight is not signed yet, so Windows does not know who made it. Delete the extracted folder. Right-click the downloaded zip, choose **Properties**, tick **Unblock** at the bottom of the General tab and click **OK**. Then extract the zip again and start `Tarnlight.exe`. If a blue "Windows protected your PC" box appears, click **More info**, then **Run anyway**.
 
 **Is Tarnlight made by TypeSafe?**
 No. Tarnlight is an unofficial project, not affiliated with or endorsed by TypeSafe.
