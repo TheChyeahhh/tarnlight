@@ -1,0 +1,31 @@
+# UTF-8
+#
+# The Windows version resource of Tarnlight.exe and tarnlight-cli.exe (Properties > Details in Explorer).
+# tarnlight.spec fills in the @...@ fields at build time: the version comes from pyproject.toml.
+VSVersionInfo(
+  ffi=FixedFileInfo(
+    filevers=@VERSION_TUPLE@,
+    prodvers=@VERSION_TUPLE@,
+    mask=0x3f,
+    flags=0x0,
+    OS=0x40004,
+    fileType=0x1,
+    subtype=0x0,
+    date=(0, 0)
+  ),
+  kids=[
+    StringFileInfo([
+      StringTable(
+        '040904B0',
+        [StringStruct('FileDescription', '@DESCRIPTION@'),
+         StringStruct('FileVersion', '@VERSION@'),
+         StringStruct('InternalName', '@NAME@'),
+         StringStruct('OriginalFilename', '@NAME@.exe'),
+         StringStruct('ProductName', 'Tarnlight'),
+         StringStruct('ProductVersion', '@VERSION@'),
+         StringStruct('LegalCopyright', 'Free and open source under the Apache-2.0 license'),
+         StringStruct('Comments', 'https://github.com/TheChyeahhh/tarnlight')])
+    ]),
+    VarFileInfo([VarStruct('Translation', [0x0409, 1200])])
+  ]
+)

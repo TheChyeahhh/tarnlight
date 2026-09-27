@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tarnlight"
+version = "0.1.0"
+description = "Local, offline console that records Jev decisions and lets you grade them."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+dependencies = [
+    "PySide6-Essentials>=6.11.2",
+    "pyqtgraph",
+    "aiohttp",
+    "zstandard",
+    "numpy",
+]
+
+[project.urls]
+Homepage = "https://github.com/TheChyeahhh/tarnlight"
+Issues = "https://github.com/TheChyeahhh/tarnlight/issues"
+
+[project.scripts]
+tarnlight = "tarnlight.__main__:main"
+
+[project.optional-dependencies]
+dev = ["pytest", "typesafe-sdk"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+tarnlight = ["fonts/*.ttf", "fonts/*.txt"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

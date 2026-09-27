@@ -1,0 +1,40 @@
+name: release
+
+# Push a tag like v0.1.0 (it must match the version in pyproject.toml) to build the Windows app and attach
+# Tarnlight-<version>-windows.zip to a draft GitHub release. Check the draft, then publish it on GitHub.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  windows-app:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write  # to create the release and attach the zip
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+      - name: The tag must match the version in pyproject.toml
+        shell: python
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          import os, sys, tomllib
+          version = tomllib.load(open("pyproject.toml", "rb"))["project"]["version"]
+          if os.environ["TAG"] != f"v{version}":
+              sys.exit(f"Tag {os.environ['TAG']} does not match version {version} in pyproject.toml")
+      - name: Build
+        run: python packaging/build.py
+      - name: Smoke test
+        run: python packaging/smoke.py
+      - uses: softprops/action-gh-release@v3
+        with:
+          draft: true
+          files: dist/Tarnlight-*-windows.zip
+          fail_on_unmatched_files: true
