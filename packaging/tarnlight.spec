@@ -58,7 +58,10 @@ def analysis(launcher):
                  module_collection_mode={"PySide6": "py", "shiboken6": "py"})
     # Qt's own translations are never loaded: the app has no translator. Keep PySide6.QtOpenGL itself: pyqtgraph
     # imports it as it loads.
-    a.binaries = [b for b in a.binaries if os.path.basename(b[0]).lower() not in LEFT_OUT]
+    # The Universal C Runtime (ucrtbase.dll and its api-ms-win-*.dll forwarders) is part of Windows 10 and 11. A build
+    # machine can have extra copies on PATH (GitHub's has one in a Java install), and PyInstaller would take those.
+    a.binaries = [b for b in a.binaries if os.path.basename(b[0]).lower() not in LEFT_OUT
+                  and not os.path.basename(b[0]).lower().startswith("api-ms-win-") and os.path.basename(b[0]).lower() != "ucrtbase.dll"]
     a.datas = [d for d in a.datas if "translations" not in os.path.normpath(d[0]).split(os.sep)]
     return a
 
